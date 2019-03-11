@@ -1,0 +1,16 @@
+<form clrForm>
+  <clr-input-container>
+    <label>Input array</label>
+    <input clrInput type="text" [(ngModel)]="inputString" name="input-array" />
+  </clr-input-container>
+
+  <button class="btn btn-primary" (click)="calculate()">Calculate</button>
+</form>
+
+<div>
+  Input: {{ inputArray }}
+</div>
+<div>
+  Result: {{ result }}
+</div>
+

@@ -23,7 +23,7 @@ public class BinaryTree<T> {
 
     private Node makeTree(T[] arr, Node root, int i) {
         // Base case for recursion
-        if (i < arr.length) {
+        if (i < arr.length && arr[i] != null) {
             Node temp = new Node(arr[i]);
             temp.parent = root;
             root = temp;

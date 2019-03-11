@@ -15,6 +15,10 @@ repositories {
     mavenCentral()
 }
 
+bootRun {
+    jvmArgs=["-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"]
+}
+
 bootJar {
     baseName = 'algorithm-server'
     version =  '0.0.1'
