@@ -21,23 +21,29 @@ public class BinairyTreeContoller {
     @Autowired
     private TaskQueueRepository repository;
 
-    private String ownerId = "abcdefg1234567";
+    // The userId is suppose to from OAuth2 context. mocking the value for now.
+    private String userId = "abcdefg1234567";
 
     @RequestMapping(value = "/longest-path-sum-root-to-leaf", method = RequestMethod.POST)
     @ResponseBody
     public BinaryTreeResponse longestPathSumRootToLeaf(@RequestBody BinaryTreeRequest theRequest) {
 
+        // Save the task to queue, to be processed by workflow later
         saveQueue(theRequest.getIntData());
 
+        // These three statement should be called inside workflow, but this will do for now.
         BinaryTree<Integer> tree = new BinaryTree<>(theRequest.getIntData());
         BinaryTreeAlgorithms algorithms = new BinaryTreeAlgorithms(tree);
-
         long sumOfLongestPathRootToLeafOfInteger = algorithms.sumOfLongestPathRootToLeafOfInteger();
+
         BinaryTreeResponse theResponse = new BinaryTreeResponse();
         theResponse.setHeight(tree.getHeight());
         theResponse.setSize(tree.getSize());
         theResponse.setIntData(theRequest.getIntData());
+        // I want to also get the path of the result so I can render it on the webpage.
         theResponse.setPath(new int []{});
+
+        // The actual result.
         theResponse.setSumOfLongestPathRootToLeafOfInteger(sumOfLongestPathRootToLeafOfInteger);
         theResponse.setTree(tree);
 
@@ -47,12 +53,8 @@ public class BinairyTreeContoller {
     private void saveQueue(Integer[] intData) {
         TaskQueue taskQueue = new TaskQueue();
         taskQueue.intData = intData;
-        taskQueue.owner = ownerId;
+        taskQueue.owner = userId;
 
         repository.save(taskQueue);
-
-        for (TaskQueue q : repository.findAll()) {
-            System.out.println(q);
-        }
     }
 }

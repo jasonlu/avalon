@@ -28,6 +28,6 @@ export class LongestPathSumRootToLeafComponent implements OnInit {
         }
         return val;
       });
-    this.binaryTreeService.getLongestPathSumRootToLeaf(this.inputArray).subscribe((sum) => { this.result = sum });
+    this.binaryTreeService.getLongestPathSumRootToLeaf(this.inputArray).subscribe((result) => { this.result = result.sumOfLongestPathRootToLeafOfInteger });
   }
 }

@@ -10,6 +10,6 @@ export class BinaryTreeService {
 
   getLongestPathSumRootToLeaf(arr: number[]) {
     const endpoint = '/api/binary-tree/longest-path-sum-root-to-leaf';
-    return this.http.post<number>(endpoint, {intData: arr})
+    return this.http.post<any>(endpoint, {intData: arr})
   }
 }

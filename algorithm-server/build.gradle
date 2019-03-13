@@ -15,10 +15,6 @@ repositories {
     mavenCentral()
 }
 
-bootRun {
-    jvmArgs=["-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"]
-}
-
 bootJar {
     baseName = 'algorithm-server'
     version =  '0.0.1'
@@ -27,6 +23,7 @@ bootJar {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    // I have no time to implement the actual OAuth2 functions. Disabling this for now.
     // implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
